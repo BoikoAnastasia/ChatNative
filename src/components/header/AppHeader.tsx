@@ -19,6 +19,7 @@ export const AppHeader = ({ title, right }: Props) => {
 
 const styles = StyleSheet.create({
   container: {
+    position: 'relative',
     height: 80,
     flexDirection: 'row',
     paddingHorizontal: 16,
