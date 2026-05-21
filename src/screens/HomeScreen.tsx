@@ -5,9 +5,13 @@ import { AppLayout } from '../layout/AppLayout';
 import { AppHeader } from '../components/header/AppHeader';
 import { CustomButton } from '../components/button/CustomButton';
 import { NavMenu } from '../components/nav/NavMenu';
+import { CustomInput } from '../components/input/CustomInput';
+import { Accordion } from '../components/accordion/Accordion';
 // img
 import BgImg from '../assets/img/chatBgImg.png';
 import Plus from '../assets/icons/plus.svg';
+
+const isEmpty = false;
 
 export const HomeScreen = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -27,20 +31,32 @@ export const HomeScreen = () => {
           </>
         }
       />
-      <View style={styles.content}>
-        <Image source={BgImg} style={styles.image} />
-        <Text style={styles.title}>Чат</Text>
-        <Text>Ваши личные сообщения полностью зашифрованы.</Text>
-      </View>
+      {isEmpty ? (
+        <View style={styles.contentEmpty}>
+          <Image source={BgImg} style={styles.image} />
+          <Text style={styles.title}>Чат</Text>
+          <Text>Ваши личные сообщения полностью зашифрованы.</Text>
+        </View>
+      ) : (
+        <View style={styles.content}>
+          <CustomInput isSearch={true} />
+          <Accordion isGroup={true} title={'Группы'} />
+          <Accordion isGroup={false} title={'Чаты'} />
+        </View>
+      )}
     </AppLayout>
   );
 };
 
 const styles = StyleSheet.create({
-  content: {
+  contentEmpty: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  content: {
+    flex: 1,
+    paddingVertical: 10,
   },
   title: {
     fontSize: 22,
