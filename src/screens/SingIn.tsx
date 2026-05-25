@@ -6,38 +6,31 @@ import { CustomInput } from '../components/input/CustomInput';
 import { AppLayout } from '../layout/AppLayout';
 import { PasswordInput } from '../components/input/PasswordInput';
 import { CustomButton } from '../components/button/CustomButton';
-// colors
+// styles
 import { COLORS } from '../constants/colors';
 
-export const SingUp = () => {
+export const SingIn = () => {
   const handleSubmit = () => {};
 
   return (
     <AppLayout>
       <View style={styles.container}>
         <View style={styles.top}>
-          <Text style={styles.title}>Регистрация</Text>
-          <Text style={styles.subtitle}>
-            Начните 30-дневную бесплатную пробную версию.
-          </Text>
+          <Text style={styles.title}>Вход</Text>
+          <Text style={styles.subtitle}>Добро пожаловать!</Text>
+          <Text style={styles.subtitle}>Пожалуйста, введите свои данные.</Text>
         </View>
         <View style={styles.form}>
-          <Field title="Имя" required={true}>
-            <CustomInput placeholder={'Введите ваше имя'} />
-          </Field>
           <Field title="Почта" required={true}>
             <CustomInput placeholder={'Введите вашу почту'} />
           </Field>
           <Field title="Пароль" required={true}>
             <PasswordInput placeholder={'Введите пароль'} />
-            <Text style={styles.helperText}>
-              Должно быть не менее 8 символов.
-            </Text>
           </Field>
         </View>
-        <CustomButton type="big" title="Начать" onPress={handleSubmit} />
+        <CustomButton type="big" title="Войти" onPress={handleSubmit} />
         <View>
-          <Text>Уже есть аккаунт? Войдите</Text>
+          <Text>Нет аккаунта? Зарегистрируйтесь</Text>
         </View>
       </View>
     </AppLayout>
@@ -53,7 +46,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 24,
   },
-  top: {},
+  top: {
+    alignItems: 'center',
+  },
   title: {
     fontSize: 36,
   },
@@ -65,8 +60,5 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
     width: '100%',
-  },
-  helperText: {
-    color: COLORS.text.text2,
   },
 });

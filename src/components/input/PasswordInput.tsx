@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 // img
 import ViewOpen from '../../assets/icons/view-open.svg';
 import ViewClose from '../../assets/icons/view-close.svg';
@@ -28,7 +28,6 @@ export const PasswordInput = ({ placeholder = 'Поиск...' }: Props) => {
         onChangeText={text => onChangeText(text)}
         secureTextEntry={!showPassword}
       />
-      <Text style={styles.helperText}>Должно быть не менее 8 символов.</Text>
     </View>
   );
 };
@@ -41,8 +40,8 @@ const styles = StyleSheet.create({
   icon: {
     position: 'absolute',
     right: 16,
-    top: '40%',
-    transform: [{ translateY: '-40%' }],
+    top: '50%',
+    transform: [{ translateY: '-50%' }],
     zIndex: 1,
   },
   textInput: {
@@ -53,8 +52,5 @@ const styles = StyleSheet.create({
     paddingRight: 45,
     borderRadius: 16,
     backgroundColor: COLORS.primary.surface2,
-  },
-  helperText: {
-    color: COLORS.text.text2,
   },
 });

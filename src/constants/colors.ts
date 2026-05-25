@@ -13,6 +13,7 @@ export const COLORS = {
   text: {
     text1: '#121f25',
     text2: '#4e4e4e',
+    inversive: '#efeeee',
   },
   success: {
     success1: '#1edd75',

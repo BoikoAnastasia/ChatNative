@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from '../screens/HomeScreen';
 import { ChatScreen } from '../screens/ChatScreen';
 import { SingUp } from '../screens/SingUp';
+import { SingIn } from '../screens/SingIn';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,6 +14,13 @@ export const ChatsStack = () => {
       <Stack.Screen
         name="SingUp"
         component={SingUp}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="SingIn"
+        component={SingIn}
         options={{
           headerShown: false,
         }}
