@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   FlatList,
   Image,
@@ -50,23 +51,26 @@ const DATA = [
 
 type ItemProps = { title: string; message: string; isGroup: boolean };
 
-const Item = ({ title, message, isGroup }: ItemProps) => (
-  <View style={styles.item}>
-    {isGroup ? (
-      <View style={styles.image}>
-        <FolderIcon />
+const Item = ({ title, message, isGroup }: ItemProps) => {
+  const navigation = useNavigation<any>();
+  return (
+    <Pressable style={styles.item} onPress={() => navigation.navigate('Chat')}>
+      {isGroup ? (
+        <View style={styles.image}>
+          <FolderIcon />
+        </View>
+      ) : (
+        <Image source={BgImg} style={styles.imageUser} />
+      )}
+      <View style={styles.column}>
+        <Text style={styles.titleText}>{title}</Text>
+        <Text style={styles.text} numberOfLines={1} ellipsizeMode="tail">
+          {message}
+        </Text>
       </View>
-    ) : (
-      <Image source={BgImg} style={styles.imageUser} />
-    )}
-    <View style={styles.column}>
-      <Text style={styles.titleText}>{title}</Text>
-      <Text style={styles.text} numberOfLines={1} ellipsizeMode="tail">
-        {message}
-      </Text>
-    </View>
-  </View>
-);
+    </Pressable>
+  );
+};
 
 if (
   Platform.OS === 'android' &&

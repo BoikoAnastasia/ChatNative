@@ -10,4 +10,14 @@ export const COLORS = {
     surface2: '#ecf0f1',
   },
   border: '#e5e5e5',
+  text: {
+    text1: '#191d20',
+    text2: '#191d20',
+  },
+  success: {
+    success1: '#1edd75',
+  },
+  button: {
+    buttonPrimary: '#121f25',
+  },
 };

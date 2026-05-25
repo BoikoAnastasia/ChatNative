@@ -4,14 +4,16 @@ import React, { ReactNode } from 'react';
 import { COLORS } from '../../constants/colors';
 
 type Props = {
-  title: string;
+  title?: string;
+  children?: ReactNode;
   right?: ReactNode;
 };
 
-export const AppHeader = ({ title, right }: Props) => {
+export const AppHeader = ({ title, right, children }: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{title}</Text>
+      {title && <Text style={styles.title}>{title}</Text>}
+      <View style={styles.children}>{children}</View>
       <View style={styles.right}>{right}</View>
     </View>
   );
@@ -20,7 +22,7 @@ export const AppHeader = ({ title, right }: Props) => {
 const styles = StyleSheet.create({
   container: {
     position: 'relative',
-    height: 80,
+    height: 120,
     flexDirection: 'row',
     paddingHorizontal: 16,
     alignItems: 'center',
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: '700',
   },
-
+  children: {},
   right: {
     flexDirection: 'row',
     gap: 16,
