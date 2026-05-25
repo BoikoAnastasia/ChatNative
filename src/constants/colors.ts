@@ -11,8 +11,8 @@ export const COLORS = {
   },
   border: '#e5e5e5',
   text: {
-    text1: '#191d20',
-    text2: '#191d20',
+    text1: '#121f25',
+    text2: '#4e4e4e',
   },
   success: {
     success1: '#1edd75',

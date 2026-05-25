@@ -7,16 +7,23 @@ import { COLORS } from '../../constants/colors';
 
 type Props = {
   isSearch?: boolean;
+  placeholder?: string;
 };
 
-export const CustomInput = ({ isSearch = false }: Props) => {
+export const CustomInput = ({
+  isSearch = false,
+  placeholder = 'Поиск...',
+}: Props) => {
   const [value, onChangeText] = useState('');
   return (
     <View style={styles.container}>
       {isSearch && <SearchIcon style={styles.icon} />}
       <TextInput
-        placeholder="Поиск..."
-        style={styles.textInput}
+        placeholder={placeholder}
+        style={[
+          styles.textInput,
+          { paddingLeft: isSearch ? 45 : 16, borderRadius: isSearch ? 24 : 16 },
+        ]}
         value={value}
         onChangeText={text => onChangeText(text)}
       />
@@ -39,10 +46,9 @@ const styles = StyleSheet.create({
   textInput: {
     width: '100%',
     padding: 10,
-    paddingLeft: 45,
     paddingVertical: 20,
     minHeight: 56,
-    borderRadius: 24,
+
     backgroundColor: COLORS.primary.surface2,
   },
 });

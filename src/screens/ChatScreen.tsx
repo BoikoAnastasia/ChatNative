@@ -16,7 +16,7 @@ import { NavMenu } from '../components/nav/NavMenu';
 import { InputMessage } from '../components/input/InputMessage';
 import { Message } from '../components/message/Message';
 // utils
-import { parseDate } from './parseDate';
+import { parseDate } from '../utils/parseDate';
 // img
 import ArrowReturnIcon from '../assets/icons/arrow-left.svg';
 import EllipsisIcon from '../assets/icons/ellipsis.svg';
