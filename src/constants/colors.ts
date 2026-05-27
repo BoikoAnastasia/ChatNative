@@ -14,6 +14,8 @@ export const COLORS = {
     text1: '#121f25',
     text2: '#4e4e4e',
     inversive: '#efeeee',
+    linkDark: '#0f6583',
+    linkLight: '#2283ae',
   },
   success: {
     success1: '#1edd75',

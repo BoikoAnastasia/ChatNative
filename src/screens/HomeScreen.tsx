@@ -15,6 +15,7 @@ const isEmpty = false;
 
 export const HomeScreen = () => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [search, setSearch] = useState('');
 
   return (
     <AppLayout>
@@ -39,7 +40,11 @@ export const HomeScreen = () => {
         </View>
       ) : (
         <View style={styles.content}>
-          <CustomInput isSearch={true} />
+          <CustomInput
+            value={search}
+            onChangeText={setSearch}
+            isSearch={true}
+          />
           <Accordion isGroup={true} title={'Группы'} />
           <Accordion isGroup={false} title={'Чаты'} />
         </View>

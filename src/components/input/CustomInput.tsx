@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, TextInput, View } from 'react-native';
 // img
 import SearchIcon from '../../assets/icons/search.svg';
@@ -6,6 +6,8 @@ import SearchIcon from '../../assets/icons/search.svg';
 import { COLORS } from '../../constants/colors';
 
 type Props = {
+  value: string;
+  onChangeText: (text: string) => void;
   isSearch?: boolean;
   placeholder?: string;
 };
@@ -13,8 +15,9 @@ type Props = {
 export const CustomInput = ({
   isSearch = false,
   placeholder = 'Поиск...',
+  value,
+  onChangeText,
 }: Props) => {
-  const [value, onChangeText] = useState('');
   return (
     <View style={styles.container}>
       {isSearch && <SearchIcon style={styles.icon} />}

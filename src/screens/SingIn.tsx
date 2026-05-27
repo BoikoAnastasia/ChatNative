@@ -1,16 +1,43 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Controller, useForm } from 'react-hook-form';
+// zod
+import { zodResolver } from '@hookform/resolvers/zod';
+// schemas
+import { SingInForm, singInSchema } from '../schemas/auth.schema';
+// hooks
+import { useAuth } from '../hooks/useAuth';
 // components
+import { AppLayout } from '../layout/AppLayout';
 import { Field } from '../components/field/Field';
 import { CustomInput } from '../components/input/CustomInput';
-import { AppLayout } from '../layout/AppLayout';
 import { PasswordInput } from '../components/input/PasswordInput';
 import { CustomButton } from '../components/button/CustomButton';
 // styles
 import { COLORS } from '../constants/colors';
 
 export const SingIn = () => {
-  const handleSubmit = () => {};
+  const navigation = useNavigation<any>();
+
+  const { setIsAuth } = useAuth();
+
+  const onSubmit = (data: SingInForm) => {
+    console.log(data);
+    setIsAuth(true);
+  };
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SingInForm>({
+    resolver: zodResolver(singInSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
 
   return (
     <AppLayout>
@@ -22,15 +49,46 @@ export const SingIn = () => {
         </View>
         <View style={styles.form}>
           <Field title="Почта" required={true}>
-            <CustomInput placeholder={'Введите вашу почту'} />
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, value } }) => (
+                <CustomInput
+                  value={value}
+                  onChangeText={onChange}
+                  placeholder={'Введите вашу почту'}
+                />
+              )}
+            />
+            {errors.email && <Text>{errors.email.message}</Text>}
           </Field>
           <Field title="Пароль" required={true}>
-            <PasswordInput placeholder={'Введите пароль'} />
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, value } }) => (
+                <PasswordInput
+                  value={value}
+                  onChange={onChange}
+                  placeholder={'Введите пароль'}
+                />
+              )}
+            />
+            {errors.password && <Text>{errors.password.message}</Text>}
           </Field>
         </View>
-        <CustomButton type="big" title="Войти" onPress={handleSubmit} />
-        <View>
-          <Text>Нет аккаунта? Зарегистрируйтесь</Text>
+        <CustomButton
+          type="big"
+          title="Войти"
+          onPress={handleSubmit(onSubmit)}
+        />
+        <View style={styles.row}>
+          <Text style={styles.bottomText}>Нет аккаунта? </Text>
+          <Pressable onPress={() => navigation.navigate('SingUp')}>
+            <Text style={[styles.link, styles.bottomText]}>
+              Зарегистрируйтесь
+            </Text>
+          </Pressable>
         </View>
       </View>
     </AppLayout>
@@ -60,5 +118,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
     width: '100%',
+  },
+  row: {
+    flexDirection: 'row',
+    gap: 4,
+  },
+  bottomText: {
+    fontSize: 16,
+  },
+  link: {
+    color: COLORS.text.linkDark,
   },
 });

@@ -7,12 +7,17 @@ import ViewClose from '../../assets/icons/view-close.svg';
 import { COLORS } from '../../constants/colors';
 
 type Props = {
+  value: string;
+  onChange: (text: string) => void;
   placeholder?: string;
 };
 
-export const PasswordInput = ({ placeholder = 'Поиск...' }: Props) => {
+export const PasswordInput = ({
+  placeholder = 'Поиск...',
+  value,
+  onChange,
+}: Props) => {
   const [showPassword, setShowPassword] = useState(true);
-  const [value, onChangeText] = useState('');
   return (
     <View style={styles.container}>
       <Pressable
@@ -25,7 +30,7 @@ export const PasswordInput = ({ placeholder = 'Поиск...' }: Props) => {
         placeholder={placeholder}
         style={[styles.textInput, {}]}
         value={value}
-        onChangeText={text => onChangeText(text)}
+        onChangeText={text => onChange(text)}
         secureTextEntry={!showPassword}
       />
     </View>
