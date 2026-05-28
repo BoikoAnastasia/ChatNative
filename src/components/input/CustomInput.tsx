@@ -10,6 +10,7 @@ type Props = {
   onChangeText: (text: string) => void;
   isSearch?: boolean;
   placeholder?: string;
+  type?: 'white' | 'grey';
 };
 
 export const CustomInput = ({
@@ -17,6 +18,7 @@ export const CustomInput = ({
   placeholder = 'Поиск...',
   value,
   onChangeText,
+  type = 'grey',
 }: Props) => {
   return (
     <View style={styles.container}>
@@ -25,6 +27,7 @@ export const CustomInput = ({
         placeholder={placeholder}
         style={[
           styles.textInput,
+          styles[type],
           { paddingLeft: isSearch ? 45 : 16, borderRadius: isSearch ? 24 : 16 },
         ]}
         value={value}
@@ -51,7 +54,11 @@ const styles = StyleSheet.create({
     padding: 10,
     paddingVertical: 20,
     minHeight: 56,
-
+  },
+  white: {
+    backgroundColor: COLORS.light.white,
+  },
+  grey: {
     backgroundColor: COLORS.primary.surface2,
   },
 });

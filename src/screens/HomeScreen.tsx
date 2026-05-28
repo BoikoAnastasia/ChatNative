@@ -1,5 +1,6 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
 import { useState } from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
+
 // components
 import { AppLayout } from '../layout/AppLayout';
 import { AppHeader } from '../components/header/AppHeader';
