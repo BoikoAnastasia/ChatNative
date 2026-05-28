@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 // components
 import { CustomInput } from '../components/input/CustomInput';
 import { AppLayout } from '../layout/AppLayout';
 // img
 import RecentlyViewedIcon from '../assets/icons/recently-viewed.svg';
 import EmailIcon from '../assets/icons/email.svg';
+import CubeImg from '../assets/img/chatBgImg.png';
 // styles
 import { COLORS } from '../constants/colors';
 import { Avatar } from '../components/avatar/Avatar';
@@ -44,6 +45,7 @@ export const SearchScreen = () => {
       ),
     );
   };
+  const hasResults = filteredContacts.length > 0 || filteredMessages.length > 0;
 
   const clearSearch = () => {
     setSearch('');
@@ -92,7 +94,7 @@ export const SearchScreen = () => {
               ))}
             </View>
           </View>
-        ) : search.length > 0 ? (
+        ) : hasResults ? (
           <View style={styles.list}>
             <View style={styles.contacts}>
               <Text style={styles.title}>Контакты</Text>
@@ -117,13 +119,16 @@ export const SearchScreen = () => {
           </View>
         ) : (
           <View style={styles.empty}>
-            <Text>Ничего не найдено</Text>
-            <Text>
+            <Image source={CubeImg} style={styles.image} />
+            <Text style={{ fontWeight: 'bold', fontSize: 16 }}>
+              Ничего не найдено
+            </Text>
+            <Text style={{ textAlign: 'center', fontSize: 14 }}>
               Мы не нашли ни одной команды, соответствующей тому, что вы искали,
               попробуйте еще раз.
             </Text>
             <Pressable onPress={clearSearch}>
-              <Text>Очистить поиск</Text>
+              <Text style={styles.link}>Очистить поиск</Text>
             </Pressable>
           </View>
         )}
@@ -142,7 +147,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     gap: 16,
   },
-  empty: {},
+  empty: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   item: {
     flexDirection: 'row',
     gap: 8,
@@ -159,6 +168,17 @@ const styles = StyleSheet.create({
   },
   latest: {
     fontSize: 14,
+  },
+  link: {
+    color: COLORS.text.linkDark,
+    marginTop: 24,
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+  },
+  image: {
+    width: 64,
+    height: 64,
+    marginBottom: 16,
   },
   contacts: {},
   messages: {},
